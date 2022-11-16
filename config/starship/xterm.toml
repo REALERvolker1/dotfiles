@@ -1,0 +1,55 @@
+# vlk's starship.toml for xterm and others like it
+
+add_newline = true
+continuation_prompt = "[> ](blue)"
+format = """
+$directory\
+$git_status\
+$jobs\
+$status\
+$cmd_duration\
+$sudo \
+"""
+
+[directory]
+format = "[$read_only]($read_only_style)[ $path ]($style)[ ]()"
+style = "fg:bright-white bg:blue"
+read_only = " L"
+read_only_style = "bold fg:bright-yellow bg:blue"
+truncation_symbol = ".../"
+truncation_length = 30
+
+[git_status]
+format = "[ $ahead_behind ]($style)[ ]()"
+style = "fg:#0e0044 bg:#9f8aea"
+#symbol = " "
+diverged = "D"
+ahead = "A"
+behind = "B!"
+up_to_date = "U"
+
+[jobs]
+format = '[ $symbol$number ]($style)[ ]()'
+symbol = "J "
+style = "fg:black bg:#FF8800"
+number_threshold = 1
+symbol_threshold = 1
+
+[status]
+format = "[ $symbol$status ]($style)[ ]()"
+style = "bold fg:white bg:#890000"
+symbol = "X "
+success_symbol = ""
+disabled = false
+
+[cmd_duration]
+format = "[ $duration ]($style)[ ]()"
+style = "bold fg:white bg:#8e07fc"
+min_time = 3_000
+
+[sudo]
+format = "[ $symbol ]($style)"
+style = "bold fg:white bg:#FF3333"
+symbol = "SU"
+disabled = false
+

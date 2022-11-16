@@ -1,0 +1,111 @@
+[theme]
+theme = "slick"
+[theme.overrides]
+idle_bg = "#123456"
+idle_fg = "#abcdef"
+
+[icons]
+icons = "awesome"
+# Idea: Add a menu of common things like mouse reset, etc
+#[[block]] 
+#block = "menu"
+#text = "\uf011"
+#[[block.items]]
+#display = " -&gt;   Bluetooth   &lt;-"
+#cmd = "blueman-manager"
+#[[block.items]]
+#display = " -&gt; Arandr &lt;-"
+#cmd = "arandr"
+#confirm_msg = "Are you sure you want to power off?"
+#[[block.items]]
+#display = " -&gt;  Reboot   &lt;-"
+#cmd = "reboot"
+#confirm_msg = "Are you sure you want to reboot?"
+
+[[block]]
+block = "focused_window"
+[block.format]
+full = "$title.rot-str(40)|"
+short = "$title.rot-str(10)|"
+
+[[block]]
+block = "pomodoro"
+notify_cmd = "notify-send '{msg}'"
+
+[[block]]
+block = "dnf"
+interval = 1800
+format = "Updates: ($count.eng(1))"
+format_singular = "Update: (1)"
+format_up_to_date = ""
+critical_updates_regex = "(linux|linux-lts|linux-zen|asus-linux)"
+[[block.click]]
+button = "left"
+cmd = "dnf list -q --upgrades | tail -n +2 | rofi -dmenu"
+
+[[block]]
+block = "custom"
+command = "PROC=$(lsof /dev/nvidia0 | wc -l) ; if [[ $PROC -eq 0 ]] ; then echo ''; else echo $PROC; fi"
+hide_when_empty = true
+interval = 5
+
+[[block]]
+block = "net"
+device = "wlo1"
+format = "^icon_net_down$speed_down.eng(3,B,K)^icon_net_up$speed_up.eng(3,B,K)"
+format_alt = "^icon_net_down$graph_down^icon_net_up$graph_up"
+[[block.click]]
+button = "right"
+cmd = "nm-connection-editor"
+
+[[block]]
+block = "temperature"
+format = "$min min, $max max, $average avg|"
+format_alt = " $icon "
+scale = "celsius"
+
+[[block]]
+block = "cpu"
+format = "$utilization$frequency"
+[[block.click]]
+button = "left"
+cmd = "cpu-x"
+
+[[block]]
+block = "memory"
+format = "$mem_used.eng(3,B,M)/$mem_total.eng(3,B,M)($mem_used_percents.eng(2))"
+
+
+[[block]]
+block = "sound"
+driver = "auto"
+max_vol = 80
+headphones_indicator = true
+[[block.click]]
+button = "left"
+cmd = "pavucontrol-qt"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "time"
+interval = 5
+[block.format]
+full = "%a %m/%d @ %I:%M %P"
+short = "%I:%M"
+
+[[block]]
+block = "battery"
+device = "BAT1"
+driver = "upower"
+format = "$percentage, $time"
+full_format = "Full"
+full_threshold  = 99
+empty_format = "$percentage, $time"
+empty_threshold = 5
+#hide_missing = true
+info = 80
+good = 60
+warning = 40
+critical = 20

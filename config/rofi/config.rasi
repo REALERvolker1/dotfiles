@@ -1,0 +1,11 @@
+@theme "/home/vlk/.config/rofi/spotlight-dark.rasi"
+configuration{
+  modi: "run,drun";
+  lines: 5;
+  font: "Hack Nerd Font 12";
+  show-icons: true;
+  terminal: "kitty";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: true;
+}

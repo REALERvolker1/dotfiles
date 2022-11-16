@@ -1,0 +1,32 @@
+#!/usr/bin/sh
+
+if [ $XDG_CURRENT_DESKTOP == "sway" ]; then
+  LOCK="swaylock -Ffi /home/vlk/Pictures/Backgrounds/treeHD1080.png"
+  LOGOUT="swaymsg exit"
+#elif [ $XDG_CURRENT_DESKTOP == "i3" ]; then
+else
+  LOCK="i3lock -nFfki /home/vlk/Pictures/Backgrounds/treeHD1080.png --time-str=\"%r\" --wrong-text=\"na\" --radius 120 --inside-color=\"ffffff\" --ring-color=\"7700ba\" --line-color=\"ffffff\" --ring-width 14"
+  LOGOUT="i3-msg exit"
+fi
+
+SUSPEND="systemctl suspend"
+POWEROFF="systemctl -i poweroff"
+REBOOT="systemctl reboot"
+
+case $1 in
+  "-L")
+    sh -c "$LOGOUT"
+    ;;
+  "-l")
+    sh -c "$LOCK"
+    ;;
+  "-s")
+    sh -c "$SUSPEND"
+    ;;
+  "-p")
+    sh -c "$POWEROFF"
+    ;;
+  "-r")
+    sh -c "$REBOOT"
+    ;;
+esac

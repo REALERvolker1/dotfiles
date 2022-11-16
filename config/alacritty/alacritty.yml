@@ -1,0 +1,76 @@
+# alacritty config idk
+
+window:
+  padding:
+    x: 4
+    y: 4
+#  decorations: none
+  opacity: 0.75
+
+scrolling:
+  history: 4000
+  draw_bold_text_with_bright_colors: false
+
+font:
+  normal:
+    family: FiraCode Nerd Font
+    style: Retina
+
+  bold:
+    family: FiraCode Nerd Font
+    style: Bold
+
+  italic:
+    family: FiraCode Nerd Font
+    style: Italic
+
+  size: 10.0
+    
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+
+colors:
+  # Default colors
+  primary:
+    background: '0x000000'
+    # Standard light gray
+    foreground: '0xeaeaea'
+    # This is the green foreground color that we sometimes like to use.
+    # foreground: '0x00FF00'
+
+  # Normal colors
+  normal:
+    black:   '0x000000'
+    red:     '0xCC0403'
+    green:   '0x19CB00'
+    yellow:  '0xCECB00'
+    blue:    '0x0D73CC'
+    magenta: '0xCB1ED1'
+    cyan:    '0x0DCDCD'
+    white:   '0xDDDDDD'
+
+  # Bright colors
+  bright:
+    black:   '0x767676'
+    red:     '0xF2201F'
+    green:   '0x23FD00'
+    yellow:  '0xFFFD00'
+    blue:    '0x1A8FFF'
+    magenta: '0xFD28FF'
+    cyan:    '0x14FFFF'
+    white:   '0xffffff'
+
+bell:
+  animation: EaseOutExpo
+  duration: 0
+
+cursor:
+  style: Beam
+  unfocused_hollow: true
+
+live_config_reload: true
+

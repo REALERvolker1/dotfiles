@@ -1,0 +1,33 @@
+{
+    "name": "vlktheme",
+    "comment": "volker1 theme",
+    "foreground-color": "#FCFCFC",
+    "background-color": "#00000080",
+    "use-theme-colors": false,
+    "use-highlight-color": false,
+    "highlight-foreground-color": "#ffffff",
+    "highlight-background-color": "#a348b1",
+    "use-cursor-color": false,
+    "cursor-foreground-color": "#ffffff",
+    "cursor-background-color": "#efefef",
+    "use-badge-color": true,
+    "badge-color": "#ac7ea8",
+    "palette": [
+        "#000000",
+        "#CC0000",
+        "#19CB00",
+        "#CECB00",
+        "#0D73CC",
+        "#CB1ED1",
+        "#0DCDCD",
+        "#DDDDDD",
+        "#545652",
+        "#EF2828",
+        "#23FD00",
+        "#FFFD00",
+        "#1A8FFF",
+        "#FD28FF",
+        "#14FFFF",
+        "#FFFFFF"
+    ]
+}

@@ -1,0 +1,57 @@
+# vlk's starship.toml DashLine prompt for nerdfont-equipped terms
+
+add_newline = true
+continuation_prompt = "[ ](blue)"
+format = """
+$directory\
+$git_status\
+$jobs\
+$status\
+$cmd_duration\
+$sudo \
+"""
+# so I see characters I type after exiting vim
+right_format = """ """
+
+[directory]
+format = "[](fg:blue)[$read_only]($read_only_style)[  $path ]($style)[ ](fg:blue)"
+style = "fg:bright-white bg:blue"
+read_only = " "
+read_only_style = "bold fg:bright-yellow bg:blue"
+truncation_symbol = ".../"
+truncation_length = 30
+
+[git_status]
+format = "[](fg:#9f8aea)[ $ahead_behind ]($style)[ ](fg:#9f8aea)"
+style = "fg:#0e0044 bg:#9f8aea"
+#symbol = " "
+diverged = ""
+ahead = ""
+behind = "!"
+up_to_date = ""
+
+[jobs]
+format = '[](fg:#FF8800)[ $symbol$number ]($style)[ ](fg:#FF8800)'
+symbol = " "
+style = "fg:black bg:#FF8800"
+number_threshold = 1
+symbol_threshold = 1
+
+[status]
+format = "[](fg:#890000)[ $symbol$status ]($style)[ ](fg:#890000)"
+style = "bold fg:white bg:#890000"
+symbol = " "
+success_symbol = ""
+disabled = false
+
+[cmd_duration]
+format = "[](fg:#8e07fc)[  $duration ]($style)[ ](fg:#8e07fc)"
+style = "bold fg:white bg:#8e07fc"
+min_time = 3_000
+
+[sudo]
+format = "[](fg:#FF3333)[$symbol]($style)[ ](fg:#FF3333)"
+style = "bold fg:white bg:#FF3333"
+symbol = "   "
+disabled = false
+

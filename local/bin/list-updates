@@ -1,0 +1,20 @@
+#!/usr/bin/sh
+# Dependencies: dnf flatpak lxqt-sudo
+
+DNFS=$(dnf check-update | grep -v '^Last metadata ex' | grep -o '^\S*')
+FLATS=$(flatpak remote-ls --updates | grep -v '^Name ' | grep -o '^\S*')
+
+#OUTPUT=""
+#if [[ $DNFS != "" ]]; then
+#  OUTPUT="$OUTPUT $DNFS"
+#fi
+#
+#if [[ $FLATS == "" ]]; then
+#  OUTPUT="$OUTPUT $FLATS"
+#fi
+
+RESULT=$(zenity --list --text="Updates" --column="dnf" $DNFS $FLATS)
+echo $RESULT
+
+flatpak update -y
+lxqt-sudo dnf update -y

@@ -1,0 +1,193 @@
+[theme]
+#theme = "slick"
+theme = "nord-dark"
+[theme.overrides]
+#idle_bg = "#123456"
+#idle_fg = "#abcdef"
+#info_bg = "#FFFFFF"
+alternating_tint_bg = "#18181e"
+alternating_tint_fg = "#000000"
+separator = "<span font='15'></span>"
+# They finally added an end separator after I complained about it lmao
+#end_separator = "<span font='14'> </span>"
+end_separator = "<span font='14'> </span>"
+#  
+# Remember 6-per-em space " "
+
+[icons]
+icons = "material-nf"
+# Idea: Add a menu of common things like mouse reset, etc
+#[[block]] 
+#block = "menu"
+#text = "\uf011"
+#[[block.items]]
+#display = " -&gt;   Bluetooth   &lt;-"
+#cmd = "blueman-manager"
+#[[block.items]]
+#display = " -&gt; Arandr &lt;-"
+#cmd = "arandr"
+#confirm_msg = "Are you sure you want to power off?"
+#[[block.items]]
+#display = " -&gt;  Reboot   &lt;-"
+#cmd = "reboot"
+#confirm_msg = "Are you sure you want to reboot?"
+
+[[block]]
+block = "focused_window"
+[block.format]
+full = "  $title.rot-str(40) |"
+short = " $title.rot-str(10) |"
+
+[[block]]
+block = "pomodoro"
+notify_cmd = "notify-send '{msg}'"
+format = "  $icon{  $message|}  "
+
+#[[block]]
+#block = "github"
+#token = "ha you thought"
+#format = "  $icon $total.eng(1) "
+#info = ["total"]
+#warning = ["mention","review_requested"]
+#hide_if_total_is_zero = true
+#[[block.click]]
+#cmd = "if echo -e 'Check_Github\nna' | rofi -dmenu | grep 'Github'; then firefox-devel 'https://github.com/notifications?query=is%3Aunread' ; fi"
+#button = "left"
+
+[[block]]
+block = "dnf"
+interval = 1800
+format = "  DNF: ($count.eng(1))  "
+format_singular = " DNF: 1 "
+format_up_to_date = ""
+critical_updates_regex = "(linux|linux-lts|linux-zen|asus-linux)"
+[[block.click]]
+button = "left"
+cmd = "dnf list -q --upgrades | tail -n +2 | rofi -dmenu"
+
+#[[block]]
+#block = "custom"
+#json = true
+#command = "~/.config/i3status-rust/abrtblock.sh"
+#format = "  $text  "
+#hide_when_empty = true
+#interval = 10
+#[[block.click]]
+#button = "left"
+#cmd = "~/.config/i3status-rust/abrtblock.sh -show"
+
+#[[block]]
+#block = "cpu"
+#format = "  $utilization$frequency "
+#[[block.click]]
+#button = "left"
+#cmd = "cpu-x"
+
+[[block]]
+block = "net"
+device = "wlo1"
+format = "  ^icon_net_down $speed_down.eng(3,B,K)  ^icon_net_up $speed_up.eng(3,B,K)  "
+format_alt = "  ^icon_net_down $graph_down  ^icon_net_up $graph_up "
+[[block.click]]
+button = "right"
+cmd = "nm-connection-editor"
+
+[[block]]
+block = "temperature"
+format = "  $icon $average |"
+# This is because I am using a gaming laptop.
+good = 60
+idle = 70
+info = 80
+warning = 90
+format_alt = "  $icon $max/ $average/ $min |"
+scale = "celsius"
+
+
+[[block]]
+block = "memory"
+#format = "  $mem_used.eng(3,B,M) /$mem_total.eng(3,B,M) ($mem_used_percents.eng(2)) "
+format = "   [$mem_used_percents.bar(6,100)]"
+#format = "$mem_used"
+
+[[block]]
+block = "sound"
+driver = "auto"
+format = " $icon { $volume|}  "
+max_vol = 80
+headphones_indicator = true
+[[block.click]]
+button = "left"
+cmd = "pavucontrol-qt"
+
+[[block]]
+block = "bluetooth"
+mac = "1C:52:16:13:D1:38"
+#disconnected_format = "  $icon  "
+format = "  $icon  "
+disconnected_format = "  $icon  "
+[[block.click]]
+button = "left"
+cmd = "blueman-manager"
+
+#[[block]]
+#block = "backlight"
+#format = "  $icon  $brightness  "
+
+#[[block]]
+#block = "notify"
+#format = "  $icon  "
+
+[[block]]
+block = "time"
+interval = 5
+[block.format]
+full = "  %a %m/%d, %I:%M %P "
+short = " %I:%M "
+
+[[block]]
+block = "custom"
+json = true
+command = "~/.config/i3status-rust/gfxblock.sh"
+format = "  $text  "
+persistent = true
+[[block.click]]
+button = "left"
+cmd = "$i3HOME/scripts/gfxmenu.sh"
+
+#[[block]]
+#block = "custom"
+#json = true
+#command = "~/.config/i3status-rust/gfxblockold.sh"
+#format = "  $text  "
+#interval = 5
+#[[block.click]]
+#button = "left"
+#cmd = "gfxmenu"
+
+#[[block]]
+#block = "custom_dbus"
+#path = "/gfx"
+#format = " $icon "
+
+[[block]]
+#idle_bg = "#FFFFFF"
+block = "battery"
+device = "BAT1"
+driver = "upower"
+format = "  $icon $percentage, $power  "
+full_format = "  $icon $percentage  "
+full_threshold  = 69
+empty_format = " $icon $percentage,  $time  "
+empty_threshold = 5
+# Good: Green, Good -> Info: dark, Info -> Warn: Lightblue, Warn -> Crit: yellow, Crit: red
+good = 85
+info = 60
+warning = 40
+critical = 20
+[[block.click]]
+button = "left"
+cmd = "lxqt-config-powermanagement"
+
+# https://github.com/greshake/i3status-rust
+

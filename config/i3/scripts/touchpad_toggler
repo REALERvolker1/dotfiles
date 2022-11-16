@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+# Do not use. Use the key_normalizer, it auto disables touchpad
+if xinput list-props 'ASUP1205:00 093A:2003 Touchpad' | grep "Device Enabled" | grep -o "0$"; then
+  echo "ye"
+  xinput enable 'ASUP1205:00 093A:2003 Touchpad'
+else
+  echo "na"
+  xinput disable 'ASUP1205:00 093A:2003 Touchpad'
+fi

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=VSCodium
+Comment=vscode but without george soros new world order covid19 deep state antichrist
+GenericName=VSCode
+Exec=/home/vlk/programs/vscode/codium --ozone-platform-hint=auto
+Icon=code
+Terminal=false
+Type=Application
+Keywords=Text;editor;vscodium;codium;code;vscode;
+Categories=Utility;TextEditor;
+StartupNotify=false

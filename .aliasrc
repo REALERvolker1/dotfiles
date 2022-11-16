@@ -1,0 +1,92 @@
+#!/usr/bin/sh
+
+alias sudo="sudo "
+alias fucking="sudo "
+
+alias ls="exa -a --icons --group-directories-first"
+alias ll="exa -alb --icons --group-directories-first"
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias igrep='grep -i --color=auto'
+
+alias q="exit"
+alias d="date +'%a %m/%d/%y @ %r'"
+
+alias df='df -h'
+alias free='free -m'
+
+alias dfn="dnf"
+alias installed="dnf list --installed | awk '{print $1}' | sed 's/\..*//g'"
+alias grubcfg="grub2-mkconfig -o /etc/grub2.cfg"
+
+alias xclassget="xprop | grep WM_CLASS | awk '{print $4}'"
+alias xkeyget="xev -event keyboard | egrep -o 'keycode.*\)'"
+alias wclassgetsway="swaymsg -t get_tree | grep 'app_id'; xlsclients"
+alias keybinds="bind -p | grep -v '^#\|self-insert\|^$'"
+
+alias vim="nvim "
+alias code="codium "
+alias py="python3 "
+alias ra="ranger "
+
+alias picom="picom --experimental-backends "
+alias gpu="switcherooctl "
+
+update () {
+  sudo dnf update --refresh "$@"
+  flatpak update "$@"
+}
+cdls () {
+  cd "$1"
+  ls
+}
+alias cd="cdls"
+
+# TODO: Get a color manpager
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;35m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[4;36m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[3;34m") \
+		PAGER="${commands[less]:-$PAGER}" \
+		_NROFF_U=1 \
+		PATH="$HOME/bin:$PATH" \
+			man "$@"
+}
+
+# Shell-specific functions
+if [ -v ZSH_NAME ]; then
+  refresh() { source ~/.zshrc ; }
+else
+  refresh() { source ~/.bashrc ; }
+fi
+
+# Term-specific functions
+if [[ $TERM == "xterm-kitty" ]]; then
+  export STARSHIP_CONFIG="$HOME/.config/starship/kitty.toml"
+  alias icat="kitty +kitten icat"
+  alias w3m="w3m -o inline_img_protocol=4"
+
+elif [[ $TERM == "alacritty" ]]; then
+  export STARSHIP_CONFIG="$HOME/.config/starship/nerdfonts.toml"
+
+else
+  # Workaround for black-box and wezterm and flatpak terms
+  if [[ $(ps -o cmd -f -p $(cat /proc/$(echo $$)/stat | cut -d \  -f 4) | tail -1 | sed 's/ .*$//') == "/usr/libexec/flatpak-session-helper" ]]; then
+    export STARSHIP_CONFIG="$HOME/.config/starship/nerdfonts.toml"
+
+  else
+    export STARSHIP_CONFIG="$HOME/.config/starship/xterm.toml"
+    alias ls="exa -a --group-directories-first"
+    alias ll="exa -alb --group-directories-first"
+
+  fi
+fi
+
+
+

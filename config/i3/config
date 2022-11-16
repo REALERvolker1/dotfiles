@@ -1,0 +1,52 @@
+# volker1's i3config
+
+set $mod Mod4
+set $alt Mod1
+set $ctrl Control
+
+set $dir $HOME/.config/i3
+
+set $term kitty
+set $termalt alacritty
+set $termaltalt flatpak run com.raggesilver.BlackBox
+set $editor gnome-text-editor
+set $filemanager thunar
+set $browser0 firefox
+set $browser1 firefox-devel
+set $charmap0 gnome-characters
+set $charmap1 gucharmap
+set $calculator gnome-calculator
+
+set $i3lock $i3HOME/scripts/vlklock.sh
+
+set $drun rofi -show drun
+set $run rofi -show run
+
+set $startupTerm sh -c "while true; do kitty --class='__scratchpad'; done"
+# TODO: Fix autorandr when monitor is unplugged or make my own
+set $monitormanager autorandr -c
+set $clipboard xfce4-clipman
+set $userbg nitrogen --restore
+# custom power manager I made
+set $pluginwatcher powermgmt-rs
+set $powermgmt lxqt-powermanagement
+#set $powermgmt xfce4-power-manager
+set $polkit /usr/libexec/xfce-polkit
+#set $settingsdaemon xfsettingsd
+
+set $exec exec --no-startup-id
+set $execa exec_always --no-startup-id
+
+set $screenshot flameshot gui
+set $killmode xkill
+set $controlcenter rog-control-center
+
+bindsym $mod+Shift+t $exec sh -c "$(zenity --entry --text='Custom Command')"
+bindsym $mod+t $exec $termaltalt
+
+font pango:FiraCode Nerd Font 10
+include $i3HOME/config.d/*
+
+# alias xclassget="xprop | grep WM_CLASS | awk '{print $4}'"
+# alias wclassget="swaymsg -t get_tree | grep 'app_id'; xlsclients"
+# alias xkeyget="xev -event keyboard | egrep -o 'keycode.*\)'"

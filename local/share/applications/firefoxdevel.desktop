@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Firefox-devel (yt)
+GenericName=Application-browser
+Comment=Web app browser
+Exec=/home/vlk/programs/firefoxdev/firefox %u --name firefox-dev
+StartupWMClass=firefox-dev
+Icon=firefox-developer-edition
+Terminal=false
+Type=Application
+Keywords=youtube;web;browser;
+Categories=Network;WebBrowser;
+StartupNotify=false

@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+#i3
+
+export WAS_I_STARTED_WITH_i3="true"
+startx
